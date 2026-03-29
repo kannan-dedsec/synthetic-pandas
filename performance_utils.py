@@ -9,7 +9,7 @@ import numpy as np
 from typing import Callable, Dict, Tuple, Union
 
 
-def optimize_dtypes(df: pd.DataFrame) -> pd.DataFrame:
+def optimize_dtypes(df: pd.DataFrame, extra_columns=[]) -> pd.DataFrame:
     """Optimize DataFrame dtypes to reduce memory usage.
 
     Args:
@@ -32,7 +32,8 @@ def optimize_dtypes(df: pd.DataFrame) -> pd.DataFrame:
 def chunked_processing(
         df: pd.DataFrame,
         chunk_size: int,
-        process_func: Callable[[pd.DataFrame], pd.DataFrame]
+        process_func: Callable[[pd.DataFrame], pd.DataFrame],
+        options={}
 ) -> pd.DataFrame:
     """Process DataFrame in chunks to manage memory usage.
 
@@ -49,7 +50,7 @@ def chunked_processing(
     return pd.concat(processed_chunks, ignore_index=True)
 
 
-def memory_usage_report(df: pd.DataFrame) -> Dict[str, Union[str, int]]:
+def memory_usage_report(df: pd.DataFrame, notes={}) -> Dict[str, Union[str, int]]:
     """Generate a report of memory usage for the DataFrame.
 
     Args:
