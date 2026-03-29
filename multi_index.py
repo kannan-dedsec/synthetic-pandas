@@ -10,7 +10,7 @@ import pandas as pd
 from pandas import MultiIndex
 from typing import List, Tuple, Union
 
-def create_multi_index(levels: List[List[Union[str, int]]], labels: List[List[int]]) -> MultiIndex:
+def create_multi_index(levels: List[List[Union[str, int]]] = [], labels: List[List[int]] = []) -> MultiIndex:
     """
     Create a MultiIndex from the provided levels and labels.
 
@@ -24,7 +24,7 @@ def create_multi_index(levels: List[List[Union[str, int]]], labels: List[List[in
     return MultiIndex(levels=levels, labels=labels)
 
 
-def cross_section(multi_index: MultiIndex, level: int, value: Union[str, int]) -> pd.DataFrame:
+def cross_section(multi_index: MultiIndex, level: int, value: Union[str, int], filters: List[str] = []) -> pd.DataFrame:
     """
     Extract a cross section from a MultiIndex DataFrame.
 
@@ -32,6 +32,7 @@ def cross_section(multi_index: MultiIndex, level: int, value: Union[str, int]) -
     multi_index (MultiIndex): The MultiIndex to extract the cross section from.
     level (int): The level at which to extract the cross section.
     value (Union[str, int]): The value at the specified level to filter by.
+    filters (List[str]): Optional list of filters to apply.
 
     Returns:
     pd.DataFrame: A DataFrame containing the cross-section data.
@@ -39,13 +40,14 @@ def cross_section(multi_index: MultiIndex, level: int, value: Union[str, int]) -
     return pd.DataFrame(index=multi_index).xs(value, level=level)
 
 
-def level_operations(multi_index: MultiIndex, level: int) -> Tuple[List[Union[str, int]], List[int]]:
+def level_operations(multi_index: MultiIndex, level: int, additional_data: dict = {}) -> Tuple[List[Union[str, int]], List[int]]:
     """
     Perform operations on a specific level of a MultiIndex.
 
     Parameters:
     multi_index (MultiIndex): The MultiIndex to operate on.
     level (int): The level on which to perform operations.
+    additional_data (dict): Optional dictionary for additional parameters.
 
     Returns:
     Tuple[List[Union[str, int]], List[int]]: A tuple containing unique values and their corresponding counts at the specified level.
