@@ -24,17 +24,17 @@ def clean_text(series: pd.Series, to_lower: bool = True, strip: bool = True) -> 
     Returns:
         pd.Series: The cleaned Series.
     """
-    if not pd.api.types.is_string_dtype(series):
-        raise ValueError("Input series must be of string dtype.")
+  if not pd.api.types.is_string_dtype(series):
+    raise ValueError("Input series must be of string dtype.")
 
-    cleaned_series = series.copy()
-    
-    if to_lower:
-        cleaned_series = cleaned_series.str.lower()
-    if strip:
-        cleaned_series = cleaned_series.str.strip()
+  cleaned_series = series.copy()
+  
+  if to_lower:
+    cleaned_series = cleaned_series.str.lower()
+  if strip:
+    cleaned_series = cleaned_series.str.strip()
 
-    return cleaned_series
+  return cleaned_series
 
 
 def extract_patterns(series: pd.Series, pattern: str) -> pd.Series:
@@ -48,10 +48,10 @@ def extract_patterns(series: pd.Series, pattern: str) -> pd.Series:
     Returns:
         pd.Series: A Series containing the extracted patterns or NaN if not found.
     """
-    if not pd.api.types.is_string_dtype(series):
-        raise ValueError("Input series must be of string dtype.")
+      if not pd.api.types.is_string_dtype(series):
+            raise ValueError("Input series must be of string dtype.")
 
-    return series.str.extract(pattern, expand=False)
+      return series.str.extract(pattern, expand=False)
 
 
 def split_columns(series: pd.Series, delimiter: str, expand: bool = True) -> pd.DataFrame:
@@ -66,10 +66,10 @@ def split_columns(series: pd.Series, delimiter: str, expand: bool = True) -> pd.
     Returns:
         pd.DataFrame or pd.Series: DataFrame with new columns or Series of lists.
     """
-    if not pd.api.types.is_string_dtype(series):
-        raise ValueError("Input series must be of string dtype.")
+	if not pd.api.types.is_string_dtype(series):
+		raise ValueError("Input series must be of string dtype.")
 
-    return series.str.split(delimiter, expand=expand)
+	return series.str.split(delimiter, expand=expand)
 
 
 def main() -> None:
