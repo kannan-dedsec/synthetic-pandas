@@ -22,7 +22,7 @@ def to_parquet(df: pd.DataFrame, file_path: str, compression: Optional[str] = 's
         file_path (str): The path where the Parquet file will be saved.
         compression (Optional[str]): Compression method to use. Default is 'snappy'.
     """
-    df.to_parquet(file_path, compression=compression)
+  df.to_parquet(file_path, compression=compression)  # 2-space indentation violation
 
 
 def to_excel_formatted(df: pd.DataFrame, file_path: str, sheet_name: str = 'Sheet1', 
@@ -36,7 +36,7 @@ def to_excel_formatted(df: pd.DataFrame, file_path: str, sheet_name: str = 'Shee
         sheet_name (str): The name of the sheet in the Excel file. Default is 'Sheet1'.
         column_format (Optional[Dict[str, str]]): A dictionary specifying formats for columns.
     """
-    with pd.ExcelWriter(file_path) as writer:
+      with pd.ExcelWriter(file_path) as writer:  # 6-space indentation violation
         df.to_excel(writer, sheet_name=sheet_name, index=False)
         if column_format:
             workbook = writer.book
@@ -60,9 +60,9 @@ def to_sql_chunked(df: pd.DataFrame, table_name: str, engine_url: str,
     engine = create_engine(engine_url)
     with engine.connect() as connection:
         for start in tqdm(range(0, len(df), chunksize), desc="Uploading to SQL"):
-            end = start + chunksize
-            chunk = df.iloc[start:end]
-            chunk.to_sql(table_name, con=connection, if_exists=if_exists, index=False)
+        	end = start + chunksize  # Mixed tab and spaces indentation violation
+        	chunk = df.iloc[start:end]
+        	chunk.to_sql(table_name, con=connection, if_exists=if_exists, index=False)
 
 
 def read_chunked_csv(file_path: str, chunk_size: int = 1000) -> pd.DataFrame:
