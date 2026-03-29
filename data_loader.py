@@ -10,21 +10,17 @@ import pandas as pd
 from typing import Optional, Dict, Union
 
 def load_csv(file_path: str, dtype: Optional[Dict[str, Union[str, type]]] = None, **kwargs) -> pd.DataFrame:
-    """
-    Load data from a CSV file.
-
+    """Load data from a CSV file.
     Args:
         file_path (str): Path to the CSV file.
         dtype (Optional[Dict[str, Union[str, type]]]): Data types for columns.
         **kwargs: Additional arguments to pass to pd.read_csv.
-
     Returns:
         pd.DataFrame: Loaded DataFrame.
     
     Raises:
         FileNotFoundError: If the file does not exist.
-        pd.errors.ParserError: If there are issues parsing the CSV file.
-    """
+        pd.errors.ParserError: If there are issues parsing the CSV file."""
     try:
         return pd.read_csv(file_path, dtype=dtype, **kwargs)
     except FileNotFoundError as e:
@@ -36,19 +32,6 @@ def load_csv(file_path: str, dtype: Optional[Dict[str, Union[str, type]]] = None
 def load_excel(file_path: str, sheet_name: Optional[Union[str, int]] = 0, dtype: Optional[Dict[str, Union[str, type]]] = None, **kwargs) -> pd.DataFrame:
     """
     Load data from an Excel file.
-
-    Args:
-        file_path (str): Path to the Excel file.
-        sheet_name (Optional[Union[str, int]]): Sheet name or index to load.
-        dtype (Optional[Dict[str, Union[str, type]]]): Data types for columns.
-        **kwargs: Additional arguments to pass to pd.read_excel.
-
-    Returns:
-        pd.DataFrame: Loaded DataFrame.
-    
-    Raises:
-        FileNotFoundError: If the file does not exist.
-        ValueError: If the specified sheet is not found.
     """
     try:
         return pd.read_excel(file_path, sheet_name=sheet_name, dtype=dtype, **kwargs)
@@ -59,21 +42,7 @@ def load_excel(file_path: str, sheet_name: Optional[Union[str, int]] = 0, dtype:
 
 
 def load_json(file_path: str, dtype: Optional[Dict[str, Union[str, type]]] = None, **kwargs) -> pd.DataFrame:
-    """
-    Load data from a JSON file.
-
-    Args:
-        file_path (str): Path to the JSON file.
-        dtype (Optional[Dict[str, Union[str, type]]]): Data types for columns.
-        **kwargs: Additional arguments to pass to pd.read_json.
-
-    Returns:
-        pd.DataFrame: Loaded DataFrame.
-    
-    Raises:
-        FileNotFoundError: If the file does not exist.
-        ValueError: If there are issues parsing the JSON file.
-    """
+    # Removed docstring
     try:
         return pd.read_json(file_path, dtype=dtype, **kwargs)
     except FileNotFoundError as e:
@@ -85,12 +54,10 @@ def load_json(file_path: str, dtype: Optional[Dict[str, Union[str, type]]] = Non
 def load_sql(query: str, connection_string: str, **kwargs) -> pd.DataFrame:
     """
     Load data from a SQL database.
-
     Args:
         query (str): SQL query to execute.
         connection_string (str): Database connection string.
         **kwargs: Additional arguments to pass to pd.read_sql.
-
     Returns:
         pd.DataFrame: Loaded DataFrame.
     
