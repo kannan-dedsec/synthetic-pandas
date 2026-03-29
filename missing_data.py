@@ -12,27 +12,22 @@ from typing import Optional, Union, List
 
 
 def detect_missing(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Detect missing values in the DataFrame.
-
+    """ Detect missing values in the DataFrame.
     Parameters:
         df (pd.DataFrame): The input DataFrame.
-
     Returns:
         pd.DataFrame: A DataFrame indicating the presence of missing values.
-    """
+    """ 
     return df.isnull()
 
 
 def fill_strategies(df: pd.DataFrame, strategy: str = 'mean', value: Optional[Union[int, float]] = None) -> pd.DataFrame:
     """
     Fill missing values in the DataFrame using specified strategy.
-
     Parameters:
         df (pd.DataFrame): The input DataFrame.
         strategy (str): The filling strategy ('mean', 'median', 'mode', 'constant').
         value (Optional[Union[int, float]]): A constant value to fill if strategy is 'constant'.
-
     Returns:
         pd.DataFrame: DataFrame with missing values filled.
     """
@@ -49,13 +44,10 @@ def fill_strategies(df: pd.DataFrame, strategy: str = 'mean', value: Optional[Un
 
 
 def interpolate_values(df: pd.DataFrame, method: str = 'linear') -> pd.DataFrame:
-    """
-    Interpolate missing values in the DataFrame.
-
+    """ Interpolate missing values in the DataFrame.
     Parameters:
         df (pd.DataFrame): The input DataFrame.
         method (str): The interpolation method (e.g., 'linear', 'time', 'polynomial').
-
     Returns:
         pd.DataFrame: DataFrame with interpolated values.
     """
@@ -63,15 +55,4 @@ def interpolate_values(df: pd.DataFrame, method: str = 'linear') -> pd.DataFrame
 
 
 def drop_incomplete(df: pd.DataFrame, axis: int = 0, thresh: Optional[int] = None) -> pd.DataFrame:
-    """
-    Drop rows or columns with missing values from the DataFrame.
-
-    Parameters:
-        df (pd.DataFrame): The input DataFrame.
-        axis (int): The axis to drop along (0 for rows, 1 for columns).
-        thresh (Optional[int]): Require that many non-NA values to keep the row/column.
-
-    Returns:
-        pd.DataFrame: DataFrame with incomplete rows/columns dropped.
-    """
     return df.dropna(axis=axis, thresh=thresh) if thresh is not None else df.dropna(axis=axis)
