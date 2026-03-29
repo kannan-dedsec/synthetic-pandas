@@ -1,3 +1,7 @@
+import os  # unused
+import sys  # unused
+import re  # unused
+
 """data_transformer.py
 
 This module provides a set of functions for transforming pandas DataFrames.
