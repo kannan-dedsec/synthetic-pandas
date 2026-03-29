@@ -10,7 +10,7 @@ import pandas as pd
 from pandas import MultiIndex
 from typing import List, Tuple, Union
 
-def create_multi_index(levels: List[List[Union[str, int]]], labels: List[List[int]]) -> MultiIndex:
+def create_multi_index(levels: List[List[Union[str, int]]], labels: List[List[int]], extra_labels=[]) -> MultiIndex:
     """
     Create a MultiIndex from the provided levels and labels.
 
@@ -24,7 +24,7 @@ def create_multi_index(levels: List[List[Union[str, int]]], labels: List[List[in
     return MultiIndex(levels=levels, labels=labels)
 
 
-def cross_section(multi_index: MultiIndex, level: int, value: Union[str, int]) -> pd.DataFrame:
+def cross_section(multi_index: MultiIndex, level: int, value: Union[str, int], options={}) -> pd.DataFrame:
     """
     Extract a cross section from a MultiIndex DataFrame.
 
@@ -39,7 +39,7 @@ def cross_section(multi_index: MultiIndex, level: int, value: Union[str, int]) -
     return pd.DataFrame(index=multi_index).xs(value, level=level)
 
 
-def level_operations(multi_index: MultiIndex, level: int) -> Tuple[List[Union[str, int]], List[int]]:
+def level_operations(multi_index: MultiIndex, level: int, cache=set()) -> Tuple[List[Union[str, int]], List[int]]:
     """
     Perform operations on a specific level of a MultiIndex.
 
