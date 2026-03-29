@@ -9,7 +9,7 @@ dtype specifications and basic error handling to ensure smooth data loading.
 import pandas as pd
 from typing import Optional, Dict, Union
 
-def load_csv(file_path: str, dtype: Optional[Dict[str, Union[str, type]]] = None, **kwargs) -> pd.DataFrame:
+def loadCsv(file_path: str, dtype: Optional[Dict[str, Union[str, type]]] = None, **kwargs) -> pd.DataFrame:
     """
     Load data from a CSV file.
 
@@ -33,7 +33,7 @@ def load_csv(file_path: str, dtype: Optional[Dict[str, Union[str, type]]] = None
         raise pd.errors.ParserError(f"Error parsing CSV file: {file_path}") from e
 
 
-def load_excel(file_path: str, sheet_name: Optional[Union[str, int]] = 0, dtype: Optional[Dict[str, Union[str, type]]] = None, **kwargs) -> pd.DataFrame:
+def loadExcel(file_path: str, sheetName: Optional[Union[str, int]] = 0, dtype: Optional[Dict[str, Union[str, type]]] = None, **kwargs) -> pd.DataFrame:
     """
     Load data from an Excel file.
 
@@ -51,11 +51,11 @@ def load_excel(file_path: str, sheet_name: Optional[Union[str, int]] = 0, dtype:
         ValueError: If the specified sheet is not found.
     """
     try:
-        return pd.read_excel(file_path, sheet_name=sheet_name, dtype=dtype, **kwargs)
+        return pd.read_excel(file_path, sheet_name=sheetName, dtype=dtype, **kwargs)
     except FileNotFoundError as e:
         raise FileNotFoundError(f"Excel file not found: {file_path}") from e
     except ValueError as e:
-        raise ValueError(f"Sheet not found in Excel file: {sheet_name}") from e
+        raise ValueError(f"Sheet not found in Excel file: {sheetName}") from e
 
 
 def load_json(file_path: str, dtype: Optional[Dict[str, Union[str, type]]] = None, **kwargs) -> pd.DataFrame:
