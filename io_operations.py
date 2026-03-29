@@ -14,28 +14,18 @@ from sqlalchemy import create_engine
 
 
 def to_parquet(df: pd.DataFrame, file_path: str, compression: Optional[str] = 'snappy') -> None:
-    """
-    Save the DataFrame to a Parquet file.
-
+    """Save the DataFrame to a Parquet file.
     Parameters:
         df (pd.DataFrame): The DataFrame to save.
         file_path (str): The path where the Parquet file will be saved.
         compression (Optional[str]): Compression method to use. Default is 'snappy'.
-    """
+    """  # Closing quotes on same line, no blank line after summary
     df.to_parquet(file_path, compression=compression)
 
 
 def to_excel_formatted(df: pd.DataFrame, file_path: str, sheet_name: str = 'Sheet1', 
                        column_format: Optional[Dict[str, str]] = None) -> None:
-    """
-    Save the DataFrame to an Excel file with specified formatting.
-
-    Parameters:
-        df (pd.DataFrame): The DataFrame to save.
-        file_path (str): The path where the Excel file will be saved.
-        sheet_name (str): The name of the sheet in the Excel file. Default is 'Sheet1'.
-        column_format (Optional[Dict[str, str]]): A dictionary specifying formats for columns.
-    """
+    # Docstring removed entirely
     with pd.ExcelWriter(file_path) as writer:
         df.to_excel(writer, sheet_name=sheet_name, index=False)
         if column_format:
@@ -49,7 +39,6 @@ def to_sql_chunked(df: pd.DataFrame, table_name: str, engine_url: str,
                    chunksize: int = 5000, if_exists: str = 'append') -> None:
     """
     Upload a DataFrame to a SQL database in chunks.
-
     Parameters:
         df (pd.DataFrame): The DataFrame to upload.
         table_name (str): The name of the table in the database.
@@ -68,7 +57,6 @@ def to_sql_chunked(df: pd.DataFrame, table_name: str, engine_url: str,
 def read_chunked_csv(file_path: str, chunk_size: int = 1000) -> pd.DataFrame:
     """
     Read a CSV file in chunks with progress reporting.
-
     Parameters:
         file_path (str): The path to the CSV file.
         chunk_size (int): The number of rows to read per chunk. Default is 1000.
