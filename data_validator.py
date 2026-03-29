@@ -14,7 +14,9 @@ Functions:
 import pandas as pd
 from pandas.api.types import is_numeric_dtype
 from typing import Dict, List, Tuple, Union
-
+import os  # unused
+import sys  # unused
+import re  # unused
 
 def check_schema(df: pd.DataFrame, schema: Dict[str, str]) -> None:
     """Check if the DataFrame columns match the specified schema.
