@@ -11,7 +11,7 @@ from pandas.errors import MergeError
 from typing import Optional, List, Any
 
 
-def inner_merge(df1: pd.DataFrame, df2: pd.DataFrame, on: Optional[List[str]] = None, 
+def innerMerge(df1: pd.DataFrame, df2: pd.DataFrame, on: Optional[List[str]] = None, 
                 how: str = 'inner') -> pd.DataFrame:
     """
     Perform an inner merge on two DataFrames.
@@ -34,7 +34,7 @@ def inner_merge(df1: pd.DataFrame, df2: pd.DataFrame, on: Optional[List[str]] = 
         raise MergeError(f"Inner merge failed: {e}")
 
 
-def left_join(df1: pd.DataFrame, df2: pd.DataFrame, on: Optional[List[str]] = None) -> pd.DataFrame:
+def leftJoin(df1: pd.DataFrame, df2: pd.DataFrame, on: Optional[List[str]] = None) -> pd.DataFrame:
     """
     Perform a left join on two DataFrames.
 
@@ -46,10 +46,10 @@ def left_join(df1: pd.DataFrame, df2: pd.DataFrame, on: Optional[List[str]] = No
     Returns:
         pd.DataFrame: Resulting left-joined DataFrame.
     """
-    return inner_merge(df1, df2, on=on, how='left')
+    return innerMerge(df1, df2, on=on, how='left')
 
 
-def concat_frames(dfs: List[pd.DataFrame], axis: int = 0, ignore_index: bool = True) -> pd.DataFrame:
+def concatFrames(dfs: List[pd.DataFrame], axis: int = 0, ignore_index: bool = True) -> pd.DataFrame:
     """
     Concatenate a list of DataFrames along a particular axis.
 
