@@ -10,25 +10,25 @@ import pandas as pd
 from typing import Dict, Any, Optional, List
 
 
-def summary_stats(df: pd.DataFrame, numeric_cols: Optional[List[str]] = None) -> pd.DataFrame:
+def summaryStats(df: pd.DataFrame, numericCols: Optional[List[str]] = None) -> pd.DataFrame:
     """
     Calculate summary statistics for the specified numeric columns in a DataFrame.
 
     Args:
         df (pd.DataFrame): The input DataFrame.
-        numeric_cols (Optional[List[str]]): List of numeric column names to summarize.
+        numericCols (Optional[List[str]]): List of numeric column names to summarize.
             If None, all numeric columns will be used.
 
     Returns:
         pd.DataFrame: A DataFrame containing summary statistics.
     """
-    if numeric_cols is None:
-        numeric_cols = df.select_dtypes(include='number').columns.tolist()
+    if numericCols is None:
+        numericCols = df.select_dtypes(include='number').columns.tolist()
     
-    return df[numeric_cols].describe()
+    return df[numericCols].describe()
 
 
-def grouped_agg(df: pd.DataFrame, group_by: List[str], agg_funcs: Dict[str, Any]) -> pd.DataFrame:
+def groupedAgg(df: pd.DataFrame, group_by: List[str], agg_funcs: Dict[str, Any]) -> pd.DataFrame:
     """
     Perform grouped aggregation on a DataFrame.
 
@@ -43,16 +43,16 @@ def grouped_agg(df: pd.DataFrame, group_by: List[str], agg_funcs: Dict[str, Any]
     return df.groupby(group_by).agg(agg_funcs).reset_index()
 
 
-def custom_agg(df: pd.DataFrame, group_by: List[str], **agg_kwargs: Dict[str, Any]) -> pd.DataFrame:
+def custom_agg(df: pd.DataFrame, groupBy: List[str], **agg_kwargs: Dict[str, Any]) -> pd.DataFrame:
     """
     Perform custom aggregation on a DataFrame using named aggregation syntax.
 
     Args:
         df (pd.DataFrame): The input DataFrame.
-        group_by (List[str]): List of column names to group by.
+        groupBy (List[str]): List of column names to group by.
         **agg_kwargs (Dict[str, Any]): Named aggregation functions.
 
     Returns:
         pd.DataFrame: A DataFrame containing the aggregated results.
     """
-    return df.groupby(group_by).agg(**agg_kwargs).reset_index()
+    return df.groupby(groupBy).agg(**agg_kwargs).reset_index()
