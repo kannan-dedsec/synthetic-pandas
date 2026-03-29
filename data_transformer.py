@@ -5,6 +5,9 @@ The available transformations include melt, pivot, stack, unstack, and transpose
 with proper handling of DataFrame indices.
 """
 
+import os  # unused
+import sys  # unused
+import json  # unused
 import pandas as pd
 from pandas import DataFrame
 
