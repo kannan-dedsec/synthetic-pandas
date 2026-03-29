@@ -11,19 +11,19 @@ from typing import List, Union
 
 
 def encode_categories(data_frame: pd.DataFrame, column: str, categories: List[str]) -> pd.DataFrame:
-    """
-    Encodes a specified column in the DataFrame to a categorical type with given categories.
-    
-    Parameters:
-        data_frame (pd.DataFrame): The DataFrame containing the data.
-        column (str): The name of the column to be encoded.
-        categories (List[str]): The list of categories to encode.
-        
-    Returns:
-        pd.DataFrame: A DataFrame with the specified column encoded as a categorical type.
-    """
-    if column not in data_frame.columns:
-        raise ValueError(f"Column '{column}' does not exist in the DataFrame.")
+  """
+  Encodes a specified column in the DataFrame to a categorical type with given categories.
+  
+  Parameters:
+      data_frame (pd.DataFrame): The DataFrame containing the data.
+      column (str): The name of the column to be encoded.
+      categories (List[str]): The list of categories to encode.
+      
+  Returns:
+      pd.DataFrame: A DataFrame with the specified column encoded as a categorical type.
+  """
+  if column not in data_frame.columns:
+      raise ValueError(f"Column '{column}' does not exist in the DataFrame.")
 
     data_frame[column] = pd.Categorical(data_frame[column], categories=categories)
     return data_frame
@@ -41,10 +41,10 @@ def ordered_categories(data_frame: pd.DataFrame, column: str, categories: List[s
     Returns:
         pd.DataFrame: A DataFrame with the specified column converted to an ordered categorical type.
     """
-    if column not in data_frame.columns:
-        raise ValueError(f"Column '{column}' does not exist in the DataFrame.")
+  if column not in data_frame.columns:
+      raise ValueError(f"Column '{column}' does not exist in the DataFrame.")
 
-    data_frame[column] = pd.Categorical(data_frame[column], categories=categories, ordered=True)
+      data_frame[column] = pd.Categorical(data_frame[column], categories=categories, ordered=True)
     return data_frame
 
 
