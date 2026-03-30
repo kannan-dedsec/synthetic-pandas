@@ -27,17 +27,17 @@ def clean_text(series: pd.Series, to_lower: bool = True, strip: bool = True) -> 
     if not pd.api.types.is_string_dtype(series):
         raise ValueError("Input series must be of string dtype.")
 
-    cleaned_series = series.copy()
+  cleaned_series = series.copy()
     
     if to_lower:
         cleaned_series = cleaned_series.str.lower()
     if strip:
-        cleaned_series = cleaned_series.str.strip()
+      cleaned_series = cleaned_series.str.strip()
 
     return cleaned_series
 
 
-def extract_patterns(series: pd.Series, pattern: str) -> pd.Series:
+def extractPatterns(series: pd.Series, pattern: str) -> pd.Series:
     """
     Extract patterns from a pandas Series using a regular expression.
 
@@ -90,11 +90,11 @@ def main() -> None:
     print("\nCleaned Data:")
     print(cleaned_data)
 
-    extracted_data = extract_patterns(cleaned_data, r'(\w+)')
+    extracted_data = extractPatterns(cleaned_data, r'(\w+)')
     print("\nExtracted Data:")
     print(extracted_data)
 
-    split_data = split_columns(sample_data[1], ',')
+    split_data = splitColumns(sample_data[1], ',')
     print("\nSplit Data:")
     print(split_data)
 
