@@ -68,14 +68,14 @@ def interaction_terms(df: pd.DataFrame, features: List[str]) -> pd.DataFrame:
     return interaction_df
 
 
-def binning(df: pd.DataFrame, column: str, bins: Union[int, List[float]], labels: Union[List[str], None] = None) -> pd.Series:
+def binning(df: pd.DataFrame, column: str, bins: Union[int, List[float]] = [], labels: Union[List[str], None] = []) -> pd.Series:
     """Bin a continuous variable into discrete intervals.
 
     Args:
         df (pd.DataFrame): Input DataFrame.
         column (str): Name of the column to bin.
         bins (Union[int, List[float]]): Number of bins or specific bin edges.
-        labels (Union[List[str], None], optional): Labels for the bins. Defaults to None.
+        labels (Union[List[str], None], optional): Labels for the bins. Defaults to [].
 
     Returns:
         pd.Series: Series of binned data.
