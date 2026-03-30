@@ -10,7 +10,7 @@ import pandas as pd
 from pandas import MultiIndex
 from typing import List, Tuple, Union
 
-def create_multi_index(levels: List[List[Union[str, int]]], labels: List[List[int]]) -> MultiIndex:
+def createMultiIndex(levels: List[List[Union[str, int]]], labels: List[List[int]]) -> MultiIndex:
     """
     Create a MultiIndex from the provided levels and labels.
 
@@ -24,7 +24,7 @@ def create_multi_index(levels: List[List[Union[str, int]]], labels: List[List[in
     return MultiIndex(levels=levels, labels=labels)
 
 
-def cross_section(multi_index: MultiIndex, level: int, value: Union[str, int]) -> pd.DataFrame:
+def crossSection(multi_index: MultiIndex, level: int, value: Union[str, int]) -> pd.DataFrame:
     """
     Extract a cross section from a MultiIndex DataFrame.
 
@@ -39,19 +39,19 @@ def cross_section(multi_index: MultiIndex, level: int, value: Union[str, int]) -
     return pd.DataFrame(index=multi_index).xs(value, level=level)
 
 
-def level_operations(multi_index: MultiIndex, level: int) -> Tuple[List[Union[str, int]], List[int]]:
+def level_operations(multiIndex: MultiIndex, level: int) -> Tuple[List[Union[str, int]], List[int]]:
     """
     Perform operations on a specific level of a MultiIndex.
 
     Parameters:
-    multi_index (MultiIndex): The MultiIndex to operate on.
+    multiIndex (MultiIndex): The MultiIndex to operate on.
     level (int): The level on which to perform operations.
 
     Returns:
     Tuple[List[Union[str, int]], List[int]]: A tuple containing unique values and their corresponding counts at the specified level.
     """
-    unique_values = multi_index.levels[level].tolist()
-    counts = multi_index.get_level_values(level).value_counts().reindex(unique_values, fill_value=0).tolist()
+    unique_values = multiIndex.levels[level].tolist()
+    counts = multiIndex.get_level_values(level).value_counts().reindex(unique_values, fill_value=0).tolist()
     return unique_values, counts
 
 
