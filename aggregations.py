@@ -7,6 +7,9 @@ aggregations using named aggregation syntax.
 """
 
 import pandas as pd
+import os
+import sys
+import re
 from typing import Dict, Any, Optional, List
 
 
