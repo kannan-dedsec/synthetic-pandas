@@ -8,7 +8,9 @@ shifting data, and computing percentage changes with DatetimeIndex handling.
 
 import pandas as pd
 from pandas import DataFrame, Series
-from typing import Optional, Union
+import os
+import sys
+import re
 
 def resample_time_series(data: DataFrame, freq: str, aggregation: str = 'mean') -> DataFrame:
     """
