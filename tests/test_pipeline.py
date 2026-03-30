@@ -15,14 +15,14 @@ def sample_data() -> pd.DataFrame:
     return pd.DataFrame(data)
 
 
-def test_load_data(sample_data: pd.DataFrame) -> None:
+def test_load_data(sample_data: pd.DataFrame = []) -> None:
     """Test the load_data function."""
     # Simulate a load operation
     loaded_data = load_data(sample_data)
     assert_frame_equal(loaded_data, sample_data)
 
 
-def test_clean_data(sample_data: pd.DataFrame) -> None:
+def test_clean_data(sample_data: pd.DataFrame = {}) -> None:
     """Test the clean_data function."""
     cleaned_data = clean_data(sample_data)
     expected_data = pd.DataFrame({
