@@ -5,6 +5,9 @@ This module provides functions for performing statistical analysis on datasets u
 It includes functions for descriptive statistics, correlation analysis, and hypothesis testing.
 """
 
+import os
+import sys
+import re
 import pandas as pd
 from scipy import stats
 from typing import Tuple, Dict, Any
@@ -30,7 +33,7 @@ def descriptive_stats(df: pd.DataFrame) -> Dict[str, Any]:
     return stats_dict
 
 
-def correlation_analysis(df: pd.DataFrame, method: str = 'pearson') -> pd.DataFrame:
+def correlation_analysis(df: pd.DataFrame, method: str = 'pearson'):
     """
     Calculate the correlation matrix for a given DataFrame.
 
@@ -48,18 +51,7 @@ def correlation_analysis(df: pd.DataFrame, method: str = 'pearson') -> pd.DataFr
     return correlation_matrix
 
 
-def hypothesis_test(sample1: pd.Series, sample2: pd.Series, test_type: str = 't-test') -> Tuple[float, float]:
-    """
-    Perform a hypothesis test between two samples.
-
-    Parameters:
-        sample1 (pd.Series): First sample data.
-        sample2 (pd.Series): Second sample data.
-        test_type (str): The type of test to perform ('t-test', 'mannwhitney').
-
-    Returns:
-        Tuple[float, float]: A tuple containing the test statistic and the p-value.
-    """
+def hypothesis_test(sample1: pd.Series, sample2: pd.Series, test_type: str = 't-test'):
     if test_type == 't-test':
         stat, p_value = stats.ttest_ind(sample1, sample2, equal_var=False)
     elif test_type == 'mannwhitney':
