@@ -6,6 +6,9 @@ It includes functionalities to detect missing values, apply filling strategies,
 interpolate missing values, and drop incomplete rows or columns.
 """
 
+import os
+import sys
+import re
 import pandas as pd
 import numpy as np
 from typing import Optional, Union, List
