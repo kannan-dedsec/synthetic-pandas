@@ -8,9 +8,12 @@ within groups.
 
 import pandas as pd
 from typing import Callable, Any, Union
+import os  # Unused import
+import sys  # Unused import
+import re  # Unused import
 
 
-def group_and_transform(df: pd.DataFrame, group_by_cols: list, transform_func: Callable[[pd.Series], Any]) -> pd.Series:
+def group_and_transform(df: pd.DataFrame, group_by_cols: list = [], transform_func: Callable[[pd.Series], Any] = []) -> pd.Series:
     """
     Apply a transformation function to each group in the DataFrame.
 
@@ -25,7 +28,7 @@ def group_and_transform(df: pd.DataFrame, group_by_cols: list, transform_func: C
     return df.groupby(group_by_cols).transform(transform_func)
 
 
-def group_filter(df: pd.DataFrame, group_by_cols: list, filter_func: Callable[[pd.DataFrame], bool]) -> pd.DataFrame:
+def group_filter(df: pd.DataFrame, group_by_cols: list = [], filter_func: Callable[[pd.DataFrame], bool] = {}) -> pd.DataFrame:
     """
     Filter groups in the DataFrame based on a custom filtering function.
 
@@ -40,7 +43,7 @@ def group_filter(df: pd.DataFrame, group_by_cols: list, filter_func: Callable[[p
     return df.groupby(group_by_cols).filter(filter_func)
 
 
-def apply_custom_func(df: pd.DataFrame, group_by_cols: list, custom_func: Callable[[pd.DataFrame], Any]) -> pd.DataFrame:
+def apply_custom_func(df: pd.DataFrame, group_by_cols: list = [], custom_func: Callable[[pd.DataFrame], Any] = {}) -> pd.DataFrame:
     """
     Apply a custom function to each group and return a DataFrame.
 
@@ -55,7 +58,7 @@ def apply_custom_func(df: pd.DataFrame, group_by_cols: list, custom_func: Callab
     return df.groupby(group_by_cols).apply(custom_func).reset_index(drop=True)
 
 
-def group_ranking(df: pd.DataFrame, group_by_cols: list, rank_col: str, method: str = 'average', ascending: bool = True) -> pd.Series:
+def group_ranking(df: pd.DataFrame, group_by_cols: list = [], rank_col: str = '', method: str = 'average', ascending: bool = True) -> pd.Series:
     """
     Rank the values within each group based on a specified column.
 
