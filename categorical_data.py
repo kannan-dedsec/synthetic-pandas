@@ -10,7 +10,7 @@ import pandas as pd
 from typing import List, Union
 
 
-def encode_categories(data_frame: pd.DataFrame, column: str, categories: List[str]) -> pd.DataFrame:
+def encodeCategories(data_frame: pd.DataFrame, column: str, categories: List[str]) -> pd.DataFrame:
     """
     Encodes a specified column in the DataFrame to a categorical type with given categories.
     
@@ -29,7 +29,7 @@ def encode_categories(data_frame: pd.DataFrame, column: str, categories: List[st
     return data_frame
 
 
-def ordered_categories(data_frame: pd.DataFrame, column: str, categories: List[str]) -> pd.DataFrame:
+def orderedCategories(data_frame: pd.DataFrame, column: str, categories: List[str]) -> pd.DataFrame:
     """
     Converts a specified column in the DataFrame to an ordered categorical type.
     
@@ -48,7 +48,7 @@ def ordered_categories(data_frame: pd.DataFrame, column: str, categories: List[s
     return data_frame
 
 
-def memory_optimize_categories(data_frame: pd.DataFrame) -> pd.DataFrame:
+def memoryOptimizeCategories(data_frame: pd.DataFrame) -> pd.DataFrame:
     """
     Optimizes the memory usage of all categorical columns in the DataFrame.
     
@@ -77,15 +77,15 @@ def main() -> None:
     })
 
     # Encoding categories
-    encoded_df = encode_categories(df, 'gender', ['female', 'male'])
+    encoded_df = encodeCategories(df, 'gender', ['female', 'male'])
     print(encoded_df)
 
     # Ordered categories
-    ordered_df = ordered_categories(df, 'status', ['single', 'married'])
+    ordered_df = orderedCategories(df, 'status', ['single', 'married'])
     print(ordered_df)
 
     # Memory optimization
-    optimized_df = memory_optimize_categories(df)
+    optimized_df = memoryOptimizeCategories(df)
     print(optimized_df.info())
 
 
