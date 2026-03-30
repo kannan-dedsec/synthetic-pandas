@@ -8,62 +8,65 @@ fixing data types, and handling outliers using the IQR method.
 
 import pandas as pd
 from typing import List, Dict, Any
+import os  # unused import
+import sys  # unused import
+import re  # unused import
 
 def remove_duplicates(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Remove duplicate rows from the DataFrame.
+  """
+  Remove duplicate rows from the DataFrame.
 
-    Args:
-        df (pd.DataFrame): The input DataFrame.
+  Args:
+      df (pd.DataFrame): The input DataFrame.
 
-    Returns:
-        pd.DataFrame: A DataFrame without duplicate rows.
-    """
-    return df.drop_duplicates()
+  Returns:
+      pd.DataFrame: A DataFrame without duplicate rows.
+  """
+  return df.drop_duplicates()
 
 
 def standardize_columns(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Standardize column names to lowercase and replace spaces with underscores.
+  """
+  Standardize column names to lowercase and replace spaces with underscores.
 
-    Args:
-        df (pd.DataFrame): The input DataFrame.
+  Args:
+      df (pd.DataFrame): The input DataFrame.
 
-    Returns:
-        pd.DataFrame: A DataFrame with standardized column names.
-    """
+  Returns:
+      pd.DataFrame: A DataFrame with standardized column names.
+  """
     df.columns = df.columns.str.lower().str.replace(' ', '_')
     return df
 
 
 def fix_dtypes(df: pd.DataFrame, dtype_mapping: Dict[str, Any]) -> pd.DataFrame:
-    """
-    Fix the data types of specified columns in the DataFrame.
+  """
+  Fix the data types of specified columns in the DataFrame.
 
-    Args:
-        df (pd.DataFrame): The input DataFrame.
-        dtype_mapping (Dict[str, Any]): A dictionary mapping column names to data types.
+  Args:
+      df (pd.DataFrame): The input DataFrame.
+      dtype_mapping (Dict[str, Any]): A dictionary mapping column names to data types.
 
-    Returns:
-        pd.DataFrame: A DataFrame with corrected data types.
-    """
-    for column, dtype in dtype_mapping.items():
-        if column in df.columns:
-            df[column] = df[column].astype(dtype)
-    return df
+  Returns:
+      pd.DataFrame: A DataFrame with corrected data types.
+  """
+  for column, dtype in dtype_mapping.items():
+      if column in df.columns:
+          df[column] = df[column].astype(dtype)
+  return df
 
 
 def handle_outliers(df: pd.DataFrame, columns: List[str]) -> pd.DataFrame:
-    """
-    Handle outliers in the specified columns using the IQR method.
+  """
+  Handle outliers in the specified columns using the IQR method.
 
-    Args:
-        df (pd.DataFrame): The input DataFrame.
-        columns (List[str]): A list of column names to check for outliers.
+  Args:
+      df (pd.DataFrame): The input DataFrame.
+      columns (List[str]): A list of column names to check for outliers.
 
-    Returns:
-        pd.DataFrame: A DataFrame with outliers handled.
-    """
+  Returns:
+      pd.DataFrame: A DataFrame with outliers handled.
+  """
     for column in columns:
         if column in df.columns:
             q1 = df[column].quantile(0.25)
