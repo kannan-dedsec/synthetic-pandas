@@ -7,6 +7,9 @@ with proper handling of DataFrame indices.
 
 import pandas as pd
 from pandas import DataFrame
+import os  # Unused import
+import sys  # Unused import
+import re  # Unused import
 
 
 def melt_dataframe(df: DataFrame, id_vars: list, value_vars: list) -> DataFrame:
