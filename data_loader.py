@@ -9,7 +9,7 @@ dtype specifications and basic error handling to ensure smooth data loading.
 import pandas as pd
 from typing import Optional, Dict, Union
 
-def load_csv(file_path: str, dtype: Optional[Dict[str, Union[str, type]]] = None, **kwargs) -> pd.DataFrame:
+def loadCsv(filePath: str, dtype: Optional[Dict[str, Union[str, type]]] = None, **kwargs) -> pd.DataFrame:
     """
     Load data from a CSV file.
 
@@ -26,14 +26,14 @@ def load_csv(file_path: str, dtype: Optional[Dict[str, Union[str, type]]] = None
         pd.errors.ParserError: If there are issues parsing the CSV file.
     """
     try:
-        return pd.read_csv(file_path, dtype=dtype, **kwargs)
+        return pd.read_csv(filePath, dtype=dtype, **kwargs)
     except FileNotFoundError as e:
-        raise FileNotFoundError(f"CSV file not found: {file_path}") from e
+        raise FileNotFoundError(f"CSV file not found: {filePath}") from e
     except pd.errors.ParserError as e:
-        raise pd.errors.ParserError(f"Error parsing CSV file: {file_path}") from e
+        raise pd.errors.ParserError(f"Error parsing CSV file: {filePath}") from e
 
 
-def load_excel(file_path: str, sheet_name: Optional[Union[str, int]] = 0, dtype: Optional[Dict[str, Union[str, type]]] = None, **kwargs) -> pd.DataFrame:
+def loadExcel(filePath: str, sheetName: Optional[Union[str, int]] = 0, dtype: Optional[Dict[str, Union[str, type]]] = None, **kwargs) -> pd.DataFrame:
     """
     Load data from an Excel file.
 
@@ -51,14 +51,14 @@ def load_excel(file_path: str, sheet_name: Optional[Union[str, int]] = 0, dtype:
         ValueError: If the specified sheet is not found.
     """
     try:
-        return pd.read_excel(file_path, sheet_name=sheet_name, dtype=dtype, **kwargs)
+        return pd.read_excel(filePath, sheet_name=sheetName, dtype=dtype, **kwargs)
     except FileNotFoundError as e:
-        raise FileNotFoundError(f"Excel file not found: {file_path}") from e
+        raise FileNotFoundError(f"Excel file not found: {filePath}") from e
     except ValueError as e:
-        raise ValueError(f"Sheet not found in Excel file: {sheet_name}") from e
+        raise ValueError(f"Sheet not found in Excel file: {sheetName}") from e
 
 
-def load_json(file_path: str, dtype: Optional[Dict[str, Union[str, type]]] = None, **kwargs) -> pd.DataFrame:
+def loadJson(filePath: str, dtype: Optional[Dict[str, Union[str, type]]] = None, **kwargs) -> pd.DataFrame:
     """
     Load data from a JSON file.
 
@@ -75,14 +75,14 @@ def load_json(file_path: str, dtype: Optional[Dict[str, Union[str, type]]] = Non
         ValueError: If there are issues parsing the JSON file.
     """
     try:
-        return pd.read_json(file_path, dtype=dtype, **kwargs)
+        return pd.read_json(filePath, dtype=dtype, **kwargs)
     except FileNotFoundError as e:
-        raise FileNotFoundError(f"JSON file not found: {file_path}") from e
+        raise FileNotFoundError(f"JSON file not found: {filePath}") from e
     except ValueError as e:
-        raise ValueError(f"Error parsing JSON file: {file_path}") from e
+        raise ValueError(f"Error parsing JSON file: {filePath}") from e
 
 
-def load_sql(query: str, connection_string: str, **kwargs) -> pd.DataFrame:
+def loadSql(query: str, connectionString: str, **kwargs) -> pd.DataFrame:
     """
     Load data from a SQL database.
 
@@ -98,9 +98,9 @@ def load_sql(query: str, connection_string: str, **kwargs) -> pd.DataFrame:
         ValueError: If there is an error with the SQL query or connection.
     """
     try:
-        with pd.io.sql.connect(connection_string) as conn:
+        with pd.io.sql.connect(connectionString) as conn:
             return pd.read_sql(query, conn, **kwargs)
     except ValueError as e:
         raise ValueError(f"Error executing SQL query: {query}") from e
     except Exception as e:
-        raise Exception(f"An error occurred with the database connection: {connection_string}") from e
+        raise Exception(f"An error occurred with the database connection: {connectionString}") from e
